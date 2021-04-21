@@ -13,21 +13,28 @@ function App() {
   const handleClick = () => {
     if (showJoke) {
       setShowJoke(false);
-      if (showPunchline) {
-        setShowPunchline(false);
-      } else {
-        setShowPunchline(true);
-      }
-      // setShowPunchline(false);
     } else {
       setShowJoke(true);
       setSingleJoke(jokes[Math.floor(Math.random() * jokes.length)]);
       // setShowPunchline(false);
     }
-    if (showNewJoke) {
-      setShowNewJoke(false);
+  };
+
+  const handlePunchlineClick = () => {
+    if (showPunchline) {
+      setShowPunchline(false);
     } else {
-      showNewJoke(true);
+      setShowPunchline(true);
+      setShowNewJoke(false);
+    }
+  };
+
+  const handleNewJokeClick = () => {
+    if (showNewJoke) {
+      setShowJoke(false);
+    } else {
+      setShowNewJoke(true);
+      setShowPunchline(false);
       setSingleJoke(jokes[Math.floor(Math.random() * jokes.length)]);
     }
   };
@@ -47,11 +54,11 @@ function App() {
       <p className="card-text">{showJoke || showPunchline ? singleJoke.setup : ''}</p>
       <p className="card-text">{showPunchline ? singleJoke.punchline : ''}</p>
       <div className="mt-auto">
-        <div> {showJoke ? '' : <Button color="info" onClick={handleClick}>Get a Joke</Button>}
+        <div> {showJoke ? '' : <Button color="info" onClick={handleClick}>Get a Joke</Button> }
         </div>
-        <div> {showPunchline ? '' : <Button color="info" onClick={handleClick}>Get Punchline</Button>}
+        <div> {showPunchline ? '' : <Button color="info" onClick={handlePunchlineClick}>Get Punchline</Button>}
         </div>
-        <div> {showNewJoke ? '' : <Button color="info" onClick={handleClick}>Get a New Joke</Button>}
+        <div> {showNewJoke ? '' : <Button color="info" onClick={handleNewJokeClick}>Get a New Joke</Button>}
         </div>
       </div>
   </div>
