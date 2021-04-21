@@ -2,5 +2,31 @@
 @import 'variables';
 
 body {
-  background-color: $favColor;
+  background-color: black;
+  color: white;
+  text-align: center;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  margin-top: 70px;
+  background-color: #474747;
+  height: 370px;
+  width: 350px;
+}
+
+.card-link {
+  background-color: black;
+  margin-bottom: 30px;
+}
+
+img {
+  margin-bottom: 30px;
+}
+
+p {
+  font-size: 20px;
 }
