@@ -8,7 +8,7 @@ function App() {
   const [singleJoke, setSingleJoke] = useState({});
   const [showJoke, setShowJoke] = useState(false);
   const [showPunchline, setShowPunchline] = useState(false);
-  const [showNewJoke, setShowNewJoke] = useState(false);
+  const [showNewJoke, setShowNewJoke] = useState(true);
 
   const handleClick = () => {
     if (showJoke) {
@@ -16,7 +16,7 @@ function App() {
     } else {
       setShowJoke(true);
       setSingleJoke(jokes[Math.floor(Math.random() * jokes.length)]);
-      // setShowPunchline(false);
+      setShowPunchline(false);
     }
   };
 
@@ -56,7 +56,7 @@ function App() {
       <div className="mt-auto">
         <div> {showJoke ? '' : <Button color="info" onClick={handleClick}>Get a Joke</Button> }
         </div>
-        <div> {showPunchline ? '' : <Button color="info" onClick={handlePunchlineClick}>Get Punchline</Button>}
+        <div> {showPunchline || !showJoke ? '' : <Button color="info" onClick={handlePunchlineClick}>Get Punchline</Button>}
         </div>
         <div> {showNewJoke ? '' : <Button color="info" onClick={handleNewJokeClick}>Get a New Joke</Button>}
         </div>
