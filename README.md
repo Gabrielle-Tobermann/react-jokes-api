@@ -1,5 +1,11 @@
 # Joke Generator 
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c16bd07d-bc36-4a65-97f5-62dfc48cf281/deploy-status)](https://app.netlify.com/sites/gt-react-jokes-api/deploys)
+
+## Deployed link
+https://gt-react-jokes-api.netlify.app/
+
+
 ## Overview 
 This fun app will generate a joke, and will let the user guess before they get the punchline. After the punchline button is clicked, the user can get a new joke. 
 
