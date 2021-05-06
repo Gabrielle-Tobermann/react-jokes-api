@@ -20,5 +20,9 @@ This fun app will generate a joke, and will let the user guess before they get t
 ![joke-generator3](https://user-images.githubusercontent.com/76187279/117233157-2f267700-ade8-11eb-81e3-3679d2bc99b2.png)
 
 
-# Contributor 
+## Contributor 
 Gabrielle Tobermann https://github.com/Gabrielle-Tobermann
+
+## Similar Projects
+https://github.com/Gabrielle-Tobermann/react-weather-api
+https://github.com/Gabrielle-Tobermann/react-lyrics-api
