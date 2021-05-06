@@ -1,36 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.scss';
+import { Button } from 'reactstrap';
+import getJoke from './helpers/data/jokeData';
 
 function App() {
-  const [domWriting, setDomWriting] = useState('Nothing Here!');
+  const [jokes, setJokes] = useState([]);
+  const [singleJoke, setSingleJoke] = useState({});
+  const [showJoke, setShowJoke] = useState(false);
+  const [showPunchline, setShowPunchline] = useState(false);
+  const [showNewJoke, setShowNewJoke] = useState(true);
 
-  const handleClick = (e) => {
-    console.warn(`You clicked ${e.target.id}`);
-    setDomWriting(`You clicked ${e.target.id}! Check the Console!`);
+  const handleClick = () => {
+    if (showJoke) {
+      setShowJoke(false);
+    } else {
+      setShowJoke(true);
+      setSingleJoke(jokes[Math.floor(Math.random() * jokes.length)]);
+      setShowPunchline(false);
+    }
   };
+
+  const handlePunchlineClick = () => {
+    if (showPunchline) {
+      setShowPunchline(false);
+    } else {
+      setShowPunchline(true);
+      setShowNewJoke(false);
+    }
+  };
+
+  const handleNewJokeClick = () => {
+    if (showNewJoke) {
+      setShowJoke(false);
+    } else {
+      setShowNewJoke(true);
+      setShowPunchline(false);
+      setSingleJoke(jokes[Math.floor(Math.random() * jokes.length)]);
+    }
+  };
+
+  useEffect(() => {
+    getJoke().then((items) => {
+      setJokes(items);
+      setSingleJoke(items[Math.floor(Math.random() * jokes.length)]);
+    });
+  }, []);
 
   return (
     <div className='App'>
-      <h2>INSIDE APP COMPONENT</h2>
-      <div>
-        <button
-          id='this-button'
-          className='btn btn-info'
-          onClick={handleClick}
-        >
-          I am THIS button
-        </button>
+     <div className="card">
+    <div className="card-body d-flex flex-column">
+      <h6 className="card-subtitle mb-2 text-muted"></h6>
+      <p className="card-text">{showJoke || showPunchline ? singleJoke.setup : ''}</p>
+      <p className="card-text">{showPunchline ? singleJoke.punchline : ''}</p>
+      <div className="mt-auto">
+        <div> {showJoke ? '' : <Button color="info" onClick={handleClick}>Get a Joke</Button> }
+        </div>
+        <div> {showPunchline || !showJoke ? '' : <Button color="info" onClick={handlePunchlineClick}>Get Punchline</Button>}
+        </div>
+        <div> {showNewJoke ? '' : <Button color="info" onClick={handleNewJokeClick}>Get a New Joke</Button>}
+        </div>
       </div>
-      <div>
-        <button
-          id='that-button'
-          className='btn btn-primary mt-3'
-          onClick={handleClick}
-        >
-          I am THAT button
-        </button>
-      </div>
-      <h3>{domWriting}</h3>
+  </div>
+</div>
     </div>
   );
 }
